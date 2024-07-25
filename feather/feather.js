@@ -19,7 +19,26 @@ const cl = 30
 const vw = 20  
 const t = new bt.Turtle()
 
+// setting diagonal position
+t.left(45).jump([20, 20])
 
+//shaft
+t.forward(shl).left(90).forward(shth).left(90)
+t.forward(shl).left(90).forward(shth).left(90)
+
+// positioning for vanes
+t.up().forward(cl).left(90).forward(shth/2).right(90).down()
+
+// vanes
+const short = vw * Math.sqrt(2)
+const long = shl - cl - 2 * vw
+
+t.left(45)
+t.forward(short).right(45).forward(long).right(45).forward(short)
+.right(90)
+t.forward(short).right(45).forward(long).right(45).forward(short)
+
+drawLines(t.lines())
 
 // transform lines using the toolkit
 bt.rotate(finalLines, 45);
