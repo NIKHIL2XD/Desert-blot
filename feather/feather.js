@@ -11,32 +11,28 @@ setDocDimensions(width, height);
 
 // store final lines here
 const finalLines = [];
-
-// code
-const shth = 3
-const shl = 120 
-const cl = 30  
-const vw = 20  
 const t = new bt.Turtle()
 
-// setting diagonal position
-t.left(45).jump([20, 20])
+const shape = (n) => {
+  const t = new bt.Turtle()
+  for (let i = 0; i < n; i++) t.forward(1).right(360/n)
+  return t.lines()
+}
 
-//shaft
-t.forward(shl).left(90).forward(shth).left(90)
-t.forward(shl).left(90).forward(shth).left(90)
+// Draw shaft as a stretched triangle
+const shaft = bt.scale(shape(3), [2, 150])
 
-// positioning for vanes
-t.up().forward(cl).left(90).forward(shth/2).right(90).down()
+// Draw vanes 
+const vanes = bt.scale(shape(11), [8, 30])
 
-// vanes
-const short = vw * Math.sqrt(2)
-const long = shl - cl - 2 * vw
+// combines the vanes to the end of the shaft
+bt.translate(vanes, [0, bt.bounds(shaft).cb[1] - bt.bounds(vanes).cb[1]])
 
-t.left(45)
-t.forward(short).right(45).forward(long).right(45).forward(short)
-.right(90)
-t.forward(short).right(45).forward(long).right(45).forward(short)
+
+const feather = [...shaft, ...vanes]
+bt.translate(feather, [width / 2, height / 2], bt.bounds(feather).cc)
+bt.rotate(feather, 135)
+drawLines(feather)
 
 drawLines(t.lines())
 
