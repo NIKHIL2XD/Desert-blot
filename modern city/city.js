@@ -39,7 +39,23 @@ bt.iteratePoints(leftmount, (pt, t) => {
 })
 bt.join(finalLines, leftmount);
 
+// pyramid 2
+const rightmount = [
+  bt.nurbs([
+    [67.5, randy + 0],
+    [randnum2 + 70, 90],
+    [randnum2 + 70, 60],
+    [width, randy + 0]
+  ])
+]
 
+bt.iteratePoints(rightmount, (pt, t) => {
+  const [x, y] = pt;
+  const freq = 1.00;
+  const dy = bt.noise(t * 25, { octaves: -1 }) * 10 * (t === 0 || t === 1 ? 0 : 1)
+  return [x, y + dy]
+})
+bt.join(finalLines, rightmount);
 
 
 //sun
