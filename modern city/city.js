@@ -12,22 +12,41 @@ const turtle = new bt.Turtle()
 //constants
 const sunRad = 9;
 const sunRays = 20;
-const random = bt.randIntInRange(-1.0, 4)
-const randomrays = bt.randIntInRange(9, 20)
+const randomrays = bt.randIntInRange(5, 8)
+const randomrays1 = bt.randIntInRange(10, 25)
+const random = bt.randInRange;
+const randnum1 = bt.randIntInRange(10, 30)
+const randnum2 = bt.randIntInRange(10, 30)
+const finalLines = [];
+const randx = bt.randIntInRange(0, 10)
+const randy = bt.randIntInRange(30, 65)
 
-//bottom line
-drawLines([
-  [
-    [0, 40],
-    [180, 40]
-  ]
-]);
+// Pyramid 1
+const leftmount = [
+  bt.nurbs([
+    [0, randy + 0],
+    [randnum1, 79],
+    [randnum1, 60],
+    [67.5, randy + 0]
+  ])
+]
+
+bt.iteratePoints(leftmount, (pt, t) => {
+  const [x, y] = pt;
+  const freq = 0;
+  const dy = bt.noise(t * 25, { octaves: -1 }) * 10 * (t === 0 || t === 1 ? 0 : 1)
+  return [x, y + dy]
+})
+bt.join(finalLines, leftmount);
+
+
+
 
 //sun
 turtle.jump([sunRad, height]).setAngle(270).down().arc(-90, sunRad); // circle
 for (let i = 1; i < sunRays + 65; i++) {
   let angle = -i / (sunRays + 1) * 90;
-  let distance = i % 2 == 1 ? randomrays : 6;
+  let distance = i % 2 == 1 ? randomrays1 : randomrays;
   turtle.jump([sunRad, height]).setAngle(270).down().arc(angle, sunRad); // go to pos
   turtle.setAngle(angle).up().forward(0.2).down().forward(distance); // sun ray
 }
@@ -41,3 +60,4 @@ let sun = turtle.lines()
 centerPolylines(sun, width, height)
 
 drawLines(sun);
+drawLines(finalLines);
