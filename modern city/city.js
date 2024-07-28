@@ -1,4 +1,4 @@
-//@title: Modern City
+//@title: Desert
 //@author: Nikhil
 //@snapshot: desert.png
 
@@ -72,35 +72,69 @@ function centerPolylines(polylines, documentWidth, documentHeight) {
   bt.translate(polylines, [documentWidth / 12.0, documentHeight / 1.2], cc);
 }
 
+// random cactus position
+//cactus1
+const r1posx = bt.randIntInRange(5.0, 17)
+const r1posy = bt.randIntInRange(2.3, 4.8)
+
+
+// random cactus shape
+//right
+const rc1 = bt.randIntInRange(13, 21)
+const rc2 = bt.randIntInRange(35, 45)
+//mid
+const rc3 = bt.randIntInRange(41, 49)
+const rc4 = bt.randIntInRange(50, 70)
+//left
+const rc6 = bt.randIntInRange(20, 33)
+const rc7 = bt.randIntInRange(37, 62)
+const rc10 = bt.randIntInRange(0, -3)
+
+//bottom
+const rc8 = bt.randIntInRange(15, 25)
+const rc9 = bt.randIntInRange(9, 14)
+
+
+
 //cactus
 
 const cactus1 = [
   bt.nurbs([
-    [9, 16],
-    [4, 20],
-    [1, 30],
-    [0, 40],
-    [0, 50],
+    [9, rc8],
+    [7, 25],
+    [6, rc6],
+    [rc10, 35],
+    [rc10, rc7],
     [5, 35],
-    [7, 32],
-    [5, 60],
-    [10, 65],
-    [16, 60],
-    [13, 28],
-    [14, 26],
-    [15, 27],
+    [7, 33],
+    [5, rc3],
+    [10, rc4],
+    [16, rc3],
+    [13, 33],
+    [15, 29],
+    [16, 33],
     [15, 36],
-    [17, 37],
-    [20, 32],
-    [19, 27],
-    [19, 25],
-    [13, 14],
-    [14, 16]  ])
-]
+    [21, rc2],
+    [20, 33],
+    [20, 31],
+    [rc1, 25],
+    [11, 21],
+    [rc9, rc8]  ])
+];
 
 
+//centering
+function centerCactus(cactus1, documentWidth, documentHeight) {
+  const cc = bt.bounds(cactus1).cc;
+  bt.translate(cactus1, [documentWidth / r1posx, documentHeight / r1posy], cc);
+}
+
+
+
+//printing
 
 let sun = turtle.lines()
+centerCactus(cactus1, width, height)
 centerPolylines(sun, width, height)
 drawLines(sun);
 drawLines(finalLines);
