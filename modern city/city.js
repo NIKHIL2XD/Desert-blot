@@ -19,7 +19,7 @@ const randnum1 = bt.randIntInRange(10, 30)
 const randnum2 = bt.randIntInRange(10, 30)
 const finalLines = [];
 const randx = bt.randIntInRange(0, 10)
-const randy = bt.randIntInRange(30, 65)
+const randy = bt.randIntInRange(30, 60)
 
 // Pyramid 1
 const leftmount = [
@@ -72,8 +72,36 @@ function centerPolylines(polylines, documentWidth, documentHeight) {
   bt.translate(polylines, [documentWidth / 12.0, documentHeight / 1.2], cc);
 }
 
+//cactus
+
+const cactus1 = [
+  bt.nurbs([
+    [9, 16],
+    [4, 20],
+    [1, 30],
+    [0, 40],
+    [0, 50],
+    [5, 35],
+    [7, 32],
+    [5, 60],
+    [10, 65],
+    [16, 60],
+    [13, 28],
+    [14, 26],
+    [15, 27],
+    [15, 36],
+    [17, 37],
+    [20, 32],
+    [19, 27],
+    [19, 25],
+    [13, 14],
+    [14, 16]  ])
+]
+
+
+
 let sun = turtle.lines()
 centerPolylines(sun, width, height)
-
 drawLines(sun);
 drawLines(finalLines);
+drawLines(cactus1);
