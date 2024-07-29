@@ -1,6 +1,6 @@
 //@title: Desert
 //@author: Nikhil
-//@snapshot: desert.png
+//@snapshot: desert1.png
 
 const width = 180;
 const height = 115;
@@ -39,6 +39,7 @@ bt.iteratePoints(leftmount, (pt, t) => {
 })
 bt.join(finalLines, leftmount);
 
+
 // pyramid 2
 const rightmount = [
   bt.nurbs([
@@ -70,18 +71,19 @@ for (let i = 1; i < sunRays + 65; i++) {
 
 
 // random cactus position
+
 //cactus1
 const r1posx = bt.randIntInRange(4.0, 17)
 const r1posy = bt.randIntInRange(2.3, 4.8)
 //cactus2
 const r2posx = bt.randIntInRange(3.0, 1.5)
-const r2posy = bt.randIntInRange(2.3, 4.8)
+const r2posy = bt.randIntInRange(1.8, 4.0)
 //cactus3
-const r3posx = bt.randIntInRange(1.4, 1.1)
-const r3posy = bt.randIntInRange(2.3, 4.8)
+const r3posx = bt.randIntInRange(1.0, 1.1)
+const r3posy = bt.randIntInRange(1.8, 5.0)
 
 
-// random cactus shape
+// random cactus shape - inspired from augustin
 
 //cactus1
 //right
@@ -204,7 +206,8 @@ const cactus3 = [
 ];
 
 
-//centering
+// centering
+
 function centerPolylines(polylines, documentWidth, documentHeight) {
   const cc = bt.bounds(polylines).cc;
   bt.translate(polylines, [documentWidth / 12.0, documentHeight / 1.2], cc);
